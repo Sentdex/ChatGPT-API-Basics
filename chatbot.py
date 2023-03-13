@@ -2,7 +2,8 @@ import openai
 import gradio as gr
 
 # load and set our key
-openai.api_key = open("authkey.txt", "r").read().strip("\n")
+openai.api_key = open("authkey-local.txt", "r").read().strip("\n")
+# openai.api_key = open("authkey.txt", "r").read().strip("\n")
 
 message_history = []
 
