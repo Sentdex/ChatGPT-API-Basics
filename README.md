@@ -1,5 +1,8 @@
 # Unlimited chatbot using chatGPT API
 
+## Introduction
+This is a simple chatbot that uses the chatGPT API to generate unlimited responses such as NSFW content. The chatGPT API is a paid service, so you need to get your own API key to use this chatbot. The UI is built using Gradio.
+
 
 ## Usage
     1. add your chatGPT API key to `authkey.txt`
