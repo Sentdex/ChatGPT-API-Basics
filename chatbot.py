@@ -50,16 +50,16 @@ def mod(reply_content):
     return reply_content
 
 
-INIT_PROMPT = "Pretend you are a graphic designer generating creative images for midjourney. Midjourney is an app that can generate AI art from simple prompts. I will give you a concept and you will give me 5 different prompts that I can feed into midjourney. Make sure they are creative."
+# INIT_PROMPT = "Pretend you are a graphic designer generating creative images for midjourney. Midjourney is an app that can generate AI art from simple prompts. I will give you a concept and you will give me 5 different prompts that I can feed into midjourney. Make sure they are creative."
 
-message_history.append(
-    {"role": "user", "content": f"{INIT_PROMPT}"})
-message_history.append(
-    {"role": "assistant", "content": "Ok, I'm happy to help"})
-request_history.append(
-    {"role": "user", "content": f"{INIT_PROMPT}"})
-request_history.append(
-    {"role": "assistant", "content": "Ok, I'm happy to help"})
+# message_history.append(
+#     {"role": "user", "content": f"{INIT_PROMPT}"})
+# message_history.append(
+#     {"role": "assistant", "content": "Ok, I'm happy to help"})
+# request_history.append(
+#     {"role": "user", "content": f"{INIT_PROMPT}"})
+# request_history.append(
+#     {"role": "assistant", "content": "Ok, I'm happy to help"})
 
 
 def predict(input):
@@ -70,7 +70,7 @@ def predict(input):
     request_history.append({"role": "user", "content": f"{input}"})
 
     completion = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo",
         messages=request_history
     )
     # remove the last message from the request history
@@ -80,7 +80,7 @@ def predict(input):
     reply_content = completion.choices[0].message.content
 
     # append output the input to a text file using utf-8 encoding
-    with open("chatlog.txt", "a", encoding="utf-8") as f:
+    with open("log.txt", "a", encoding="utf-8") as f:
         f.write(f'User: {input}\n')
         f.write(f'Assistant: {reply_content}\n')
 
@@ -92,7 +92,7 @@ def predict(input):
 
     # get pairs of msg["content"] from message history, skipping the pre-prompt:              here.
     response = [(message_history[i]["content"], message_history[i + 1]["content"])
-                for i in range(2, len(message_history) - 1, 2)]  # convert to tuples of list
+                for i in range(0, len(message_history) - 1, 2)]  # convert to tuples of list
     return response
 
 
