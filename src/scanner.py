@@ -10,7 +10,7 @@ from config import CHUNK_SIZE, CHUNK_OVERLAP, DOCFILE, DB_NAME
 import os
 
 
-def scan(document, db_name):
+def scan(document, db_name=DB_NAME):
 
     loader = TextLoader(document)
     documents = loader.load()

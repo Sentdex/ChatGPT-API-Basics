@@ -10,23 +10,17 @@ from config import DB_NAME, DOCFILE, AUTHPATH
 import os
 from scanner import scan
 
-def jarvis(DB_NAME):
-
+def jarvis(query:str, DB_NAME=DB_NAME) -> str:
     embeddings = OpenAIEmbeddings()
-
     db = FAISS.load_local(DB_NAME, embeddings)
-    while True:
-        query = input("Q: ")
-        embedding_vector = embeddings.embed_query(query)
-        docs_and_scores = db.similarity_search_by_vector(embedding_vector)
+    embedding_vector = embeddings.embed_query(query)
 
-        # load_qa_chain
-        chain = load_qa_chain(ChatOpenAI(temperature=0), chain_type="stuff")
+    docs_and_scores = db.similarity_search_by_vector(embedding_vector)
 
-        ans = chain({"input_documents": docs_and_scores, "question": query})
+    chain = load_qa_chain(ChatOpenAI(temperature=0), chain_type="stuff")
 
-        print(f'A: {ans["output_text"]}')
-        # print(f'信息来源: {ans}')
+    ans = chain({"input_documents": docs_and_scores, "question": query})
+    return ans["output_text"]
 
 if __name__ == '__main__':
     os.environ["OPENAI_API_KEY"] = open(AUTHPATH).read().strip() 
