@@ -79,8 +79,8 @@ def predict(input):
     # .replace('```python', '<pre>').replace('```', '</pre>')
     reply_content = completion.choices[0].message.content
 
-    # append output the input to a text file using utf-8 encoding
-    with open("log.txt", "a", encoding="utf-8") as f:
+    # append output the input to a text file using utf-8 encoding, if not exists, create it
+    with open('log.txt', 'a+', encoding='utf-8') as f:
         f.write(f'User: {input}\n')
         f.write(f'Assistant: {reply_content}\n')
 
