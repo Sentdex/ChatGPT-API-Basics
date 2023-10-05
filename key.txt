@@ -1,1 +1,11 @@
 YOURKEYHERE
+
+############
+We made some changes problem solver
+
+move the key to the env file
+1. Duplicate the .env.example file
+2. Rename it to just .env
+3. Paste the key as the CHATGPT_API_KEY value
+
+#############

@@ -40,3 +40,6 @@ For windows
 python3 -m venv venv
 source venv/bin/active
 ```
+
+##### Setting up API key [With enviroment variable]
+You duplicate the .env.example file to .env (renaming the duplicate file to .env) and put your openai key as the CHATGPT_API_KEY value.
